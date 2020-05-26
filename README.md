@@ -1,20 +1,17 @@
 # The Future, The Past & Natural Language Processing
 
----
 
 #### Nate Bukowski
 
 
 ## Problem Statement
 
----
 
 Using comments and submissions from the `r/history` and `r/Futurology` subreddits, can we build a model that can tell the difference between a conversation about the future and a conversation about the past?
 
 
 ## Repo Contents
 
----
 
 The [data](./data) folder contains the final data from the scrape in the form of the [reddit_data.csv](./data/reddit_data.csv) file.
 
@@ -26,14 +23,12 @@ The [code](./code) folder contains two python notebooks.
 
 ## Data
 
----
 
 Using [Pushshift's API](https://github.com/pushshift/api), 10,000 comments and 10,000 submissions were collected from each subreddit for a total of 40,000 rows of data.
 
 
 ## Executive Summary
 
----
 
 ### 1. Data Collection, Cleaning & Feature Engineering
 Using the Pushshift API, language data was collected from two subreddits: `r/history` and `r/Futurology`. Scraping 10,000 comments and 10,000 submissions from each subreddit totaled 40,000 rows of data when merged together into one final dataframe. In order to get the data ready for modeling I did a little bit of cleaning. Each 10,000 row dataframe only needed certain columns depending on the category of the post; the comment dataframes used the `author`, `body` and `subreddit` columns, while the submission dataframes used the `author`, `title` and `subreddit` columns. So that the individual dataframes could be effectively combined, the `body` and `title` columns were both renamed `text`. Once combined, the target `subreddit` column was converted into binary values that our models could use for prediction; 1 for Futurology and 0 for history. The last step was to clear all deleted and removed posts from the dataframe before converting it to a `.csv` file.
